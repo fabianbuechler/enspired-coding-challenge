@@ -1,6 +1,8 @@
+import collections
 import dataclasses
+import itertools
 
-from .chair import Chairs, ChairTypeCount
+from .chair import ChairTypeCount
 from .room import Rooms
 
 
@@ -8,9 +10,9 @@ from .room import Rooms
 class Apartment:
     rooms: Rooms
 
-    @property
-    def chairs(self) -> Chairs:
-        raise NotImplementedError()
-
     def count_chair_types(self) -> ChairTypeCount:
-        raise NotImplementedError()
+        return dict(
+            collections.Counter(
+                itertools.chain.from_iterable(room.chairs for room in self.rooms)
+            )
+        )

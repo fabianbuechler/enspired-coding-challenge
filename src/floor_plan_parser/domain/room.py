@@ -1,3 +1,4 @@
+import collections
 import dataclasses
 
 from .chair import Chairs, ChairTypeCount
@@ -9,7 +10,7 @@ class Room:
     chairs: Chairs
 
     def count_chair_types(self) -> ChairTypeCount:
-        raise NotImplementedError()
+        return dict(collections.Counter(self.chairs))
 
 
 type Rooms = list[Room]
