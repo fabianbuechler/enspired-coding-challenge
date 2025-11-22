@@ -1,0 +1,96 @@
+[project]
+name = "floor_plan_parser"
+version = "0.1.0"
+description = "Floor-plan parser to count different types of chairs in apartment rooms"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ipdb",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+    "ruff",
+]
+
+[build-system]
+requires = ["uv_build >= 0.9.5, <0.10.0"]
+build-backend = "uv_build"
+
+[tool.pytest]
+pythonpath = ["src"]
+strict = true
+addopts = [
+    "--import-mode=importlib",
+    "--cov-branch",
+    "--showlocals",
+    ]
+
+[tool.mypy]
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+exclude = []
+
+[[tool.mypy.overrides]]
+module = []
+ignore_missing_imports = true
+
+[tool.pylsp-mypy]
+enabled = true
+live_mode = false
+
+[tool.ruff]
+extend-include = ["tests/**/*.py"]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = [
+    "C90", # mccabe
+    "E",   # pycodestyle
+    "F",   # pyflakes
+    "I",   # isort
+    "W",   # pycodestyle
+    "NPY", # numpy
+    "AIR", # Airflow-specific
+    "PLR0915", # pylint: max statements per function
+    "RUF100"  # ruff: Unused `noqa`
+    ]
+# Disable some specific linting rules that conflict with the formatter:
+# https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+ignore = [
+    "W191",   # tab-indentation
+    "E111",   # indentation-with-invalid-multiple
+    "E114",   # indentation-with-invalid-multiple-comment
+    "E117",   # over-indented
+    "D206",   # indent-with-spaces
+    "D300",   # triple-single-quotes
+    "Q000",   # bad-quotes-inline-string
+    "Q001",   # bad-quotes-multiline-string
+    "Q002",   # bad-quotes-docstring
+    "Q003",   # avoidable-escaped-quote
+    "COM812", # missing-trailing-comma
+    "COM819", # prohibited-trailing-comma
+    "ISC001", # single-line-implicit-string-concatenation
+    "ISC002"  # multi-line-implicit-string-concatenation
+    ]
+
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["floor_plan_parser"]
+
+[tool.ruff.lint.pylint]
+max-statements = 25
+
+[tool.ruff.format]
+quote-style = "double"
+
