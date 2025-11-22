@@ -32,7 +32,7 @@ W: 0, P: 2, S: 0, C: 0
 ## Architecture
 
 ### Entities
-- `Appartment`: floor plan, collection of rooms, method to sum chair counts
+- `Apartment`: floor plan, collection of rooms, method to sum chair counts
 - `Room`: name, floor plan mask, count of chairs by chair type
 - `ChairType`: enum
 
