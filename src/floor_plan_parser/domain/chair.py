@@ -1,5 +1,4 @@
 import enum
-from collections.abc import Iterable
 from typing import Protocol
 
 type ChairTypeCount = dict[ChairType, int]
@@ -12,7 +11,7 @@ class ChairType(enum.Enum):
     CHINA = "C"
 
 
-type Chairs = Iterable[ChairType]
+type Chairs = list[ChairType]
 
 
 class ChairContainer(Protocol):

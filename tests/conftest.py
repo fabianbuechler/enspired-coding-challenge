@@ -1,3 +1,4 @@
+import operator
 import pathlib
 
 import pytest
@@ -26,6 +27,8 @@ def expected_chairs_by_room(
     chairs_by_room: dict[str, str],
 ) -> dict[str, list[ChairType]]:
     return {
-        room: sorted([ChairType(chair) for chair in chairs])
+        room: sorted(
+            [ChairType(chair) for chair in chairs], key=operator.attrgetter("value")
+        )
         for room, chairs in chairs_by_room.items()
     }
