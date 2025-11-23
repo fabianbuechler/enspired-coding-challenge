@@ -1,6 +1,7 @@
 import operator
 import re
 from collections.abc import Iterable, Iterator
+from typing import Protocol
 
 import numpy as np
 
@@ -63,7 +64,14 @@ class FloorPlan:
         return rooms
 
 
-def parse_floor_plan(floor_plan_ascii: str) -> Apartment:
+class ApartmentPresenterProtocol(Protocol):
+    def __call__(self, apartment: Apartment) -> str: ...
+
+
+def parse_floor_plan(
+    floor_plan_ascii: str,
+    apartment_presenter: ApartmentPresenterProtocol,
+) -> str:
     floor_plan = FloorPlan(floor_plan_ascii)
     rooms = floor_plan.find_rooms_and_chairs()
-    return Apartment(rooms)
+    return apartment_presenter(Apartment(rooms))
