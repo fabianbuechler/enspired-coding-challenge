@@ -2,6 +2,7 @@ import pathlib
 
 import pytest
 
+from floor_plan_parser.app.parse_floor_plan import FloorPlan
 from floor_plan_parser.domain import ChairType
 
 
@@ -13,6 +14,11 @@ def floor_plans_dir() -> pathlib.Path:
 @pytest.fixture
 def floor_plan_ascii(floor_plans_dir: pathlib.Path, apartment_name: str) -> str:
     return (floor_plans_dir / f"{apartment_name}.txt").read_text()
+
+
+@pytest.fixture
+def floor_plan(floor_plan_ascii: str) -> FloorPlan:
+    return FloorPlan(floor_plan_ascii)
 
 
 @pytest.fixture
