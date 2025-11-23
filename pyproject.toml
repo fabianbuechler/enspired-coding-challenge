@@ -3,7 +3,9 @@ name = "floor_plan_parser"
 version = "0.1.0"
 description = "Floor-plan parser to count different types of chairs in apartment rooms"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "numpy>=2.3.5",
+]
 
 [dependency-groups]
 dev = [
