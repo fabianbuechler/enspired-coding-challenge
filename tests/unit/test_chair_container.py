@@ -1,7 +1,7 @@
 import pytest
 
+from floor_plan_parser.app.apartment import Apartment
 from floor_plan_parser.domain import (
-    Apartment,
     ChairContainer,
     ChairType,
     ChairTypeCount,

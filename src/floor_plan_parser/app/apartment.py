@@ -2,8 +2,7 @@ import collections
 import dataclasses
 import itertools
 
-from .chair import ChairTypeCount
-from .room import Rooms
+from floor_plan_parser.domain import ChairTypeCount, Rooms
 
 
 @dataclasses.dataclass

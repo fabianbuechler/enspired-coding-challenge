@@ -1,6 +1,3 @@
-from .apartment import (  # noqa: F401
-    Apartment,
-)
 from .chair import (  # noqa: F401
     ChairContainer,
     Chairs,

@@ -4,7 +4,9 @@ from collections.abc import Iterable, Iterator
 
 import numpy as np
 
-from floor_plan_parser.domain import Apartment, ChairType, Room
+from floor_plan_parser.domain import ChairType, Room
+
+from .apartment import Apartment
 
 type Coordinate = tuple[int, int]  # y, x
 
