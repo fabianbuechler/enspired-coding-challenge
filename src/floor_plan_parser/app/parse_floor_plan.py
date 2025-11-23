@@ -13,6 +13,16 @@ type Coordinate = tuple[int, int]  # y, x
 
 
 class FloorPlan:
+    """Floor-plan parser implementation.
+
+    Identify room markers and flood-fill rooms from there to any walls, searching for
+    chair markers.
+
+    `find_rooms_and_chairs` returns the list of identified `Room`s and the contained
+    `ChairType`s for each.
+
+    """
+
     _re_room_marker: re.Pattern = re.compile(r"\((?P<name>[\w\s]+)\)", re.ASCII)
 
     _WALL_CHARACTERS = {"|", "-", "+", "\\", "/"}
@@ -65,6 +75,12 @@ class FloorPlan:
 
 
 class ApartmentPresenterProtocol(Protocol):
+    """Presenter for apartment chair plans.
+
+    To be implemented by controllers for the use-case.
+
+    """
+
     def __call__(self, apartment: Apartment) -> str: ...
 
 
@@ -72,6 +88,13 @@ def parse_floor_plan(
     floor_plan_ascii: str,
     apartment_presenter: ApartmentPresenterProtocol,
 ) -> str:
+    """Entrypoint for parse floor-plan use-case.
+
+    Initialize the `FloorPlan` from the ASCII floor-plan, find rooms and chairs and
+    finally format the apartment chair plan according to the specified presenter.
+
+
+    """
     floor_plan = FloorPlan(floor_plan_ascii)
     rooms = floor_plan.find_rooms_and_chairs()
     return apartment_presenter(Apartment(rooms))
