@@ -7,6 +7,9 @@ dependencies = [
     "numpy>=2.3.5",
 ]
 
+[project.scripts]
+floor-plan-parser = "floor_plan_parser.cli:floor_plan_parser"
+
 [dependency-groups]
 dev = [
     "ipdb",
