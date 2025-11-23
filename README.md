@@ -1,5 +1,17 @@
 # enspired coding challenge, Fabian Büchler
 
+## Usage
+
+This package exposes the `floor-plan-parser` CLI. To install it, run:
+```bash
+uv sync
+```
+
+Run the floor-plan parser, bu passing a floor-plan file:
+```bash
+uv run floor-plan-parser rooms.txt
+```
+
 ## Task
 
 - Company: Apartment And Chair Delivery Limited (AACD)
